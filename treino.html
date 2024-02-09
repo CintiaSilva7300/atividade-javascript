@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Treino Javascript</title>
+  </head>
+  <body>
+    <form id="meuFormulario">
+      <div>
+        <label for="nomeCompleto">Nome completo:</label>
+        <input
+          type="text"
+          id="nomeCompleto"
+          name="nomeCompleto"
+          onkeyup="validarNome()"
+        />
+        <span id="txtNome" class="msgTxt"></span>
+      </div>
+      <button type="button" onclick="validarFormulario()">Enviar</button>
+    </form>
+
+    <script>
+      function validarNome() {
+        var nomeInput = document.getElementById("nomeCompleto");
+        var mensagem = document.getElementById("txtNome");
+
+        if (nomeInput.value.trim() === "") {
+          mensagem.textContent = "Por favor, preencha seu nome completo.";
+          mensagem.classList.add("error");
+        } else {
+          mensagem.textContent = "";
+          mensagem.classList.remove("error");
+        }
+      }
+
+      function validarFormulario() {
+        validarNome(); // Chama a função de validação do nome
+
+        // Verifica se existem erros
+        if (document.querySelectorAll(".error").length > 0) {
+          return false;
+        }
+
+        // Envia o formulário
+        document.getElementById("meuFormulario").submit();
+      }
+    </script>
+  </body>
+</html>
